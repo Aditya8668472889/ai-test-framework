@@ -29,7 +29,7 @@ export default defineConfig({
     trace: 'on-first-retry',
 
     // Run in headless mode (no browser window)
-    headless: false,
+    headless: true,
   },
 
   // Only Chromium for now
