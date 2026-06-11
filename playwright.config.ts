@@ -17,8 +17,12 @@ export default defineConfig({
   // Retry failed tests once on CI
   retries: process.env.CI ? 1 : 0,
 
-  // Reporter - shows results in terminal + generates HTML report
-  reporter: [['list'], ['html', { open: 'never' }]],
+  // Reporter - terminal list + HTML report + JSON feed for the dashboard
+  reporter: [
+    ['list'],
+    ['html', { open: 'never' }],
+    ['json', { outputFile: 'test-results/results.json' }],
+  ],
 
   use: {
     // Base URL from .env (fallback keeps the suite runnable with no .env).

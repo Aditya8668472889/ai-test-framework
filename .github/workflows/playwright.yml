@@ -39,7 +39,21 @@ jobs:
           TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
-      # Step 6 — Upload test report
+      # Step 6 — Generate the HTML dashboard from the JSON results
+      - name: Generate dashboard
+        if: always()
+        run: ./node_modules/.bin/ts-node utils/generateDashboard.ts
+
+      # Step 7 — Upload the dashboard as an artifact
+      - name: Upload dashboard
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-dashboard
+          path: dashboard/
+          retention-days: 30
+
+      # Step 8 — Upload test report
       - name: Upload test report
         uses: actions/upload-artifact@v4
         if: always()

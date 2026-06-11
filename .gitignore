@@ -3,3 +3,6 @@ node_modules/
 playwright-report/
 test-results/
 dist/
+
+# Generated dashboard output — the folder is tracked via .gitkeep, the HTML is built
+dashboard/index.html
